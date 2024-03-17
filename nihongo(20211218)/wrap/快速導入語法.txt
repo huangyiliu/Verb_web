@@ -1,0 +1,8 @@
+
+
+
+
+<?php include('wrap/header.php'); ?>
+<?php include('wrap/nav.php'); ?>
+
+<?php include('wrap/footer.php'); ?>
