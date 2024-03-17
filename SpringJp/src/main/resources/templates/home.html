@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<title>動詞變化行</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link th:href="@{/css/styles.css}" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+</head>
+<body>
+
+test
+	<div class="container">
+		<!-- header -->
+		<div th:insert="~{fragments/header :: header_verb_contents}"></div>
+
+		<!-- content -->
+		<div th:insert="~{content :: content_contents}"></div>		
+		
+		<h1>Items List</h1>
+		<ul id="itemList">
+			<!-- Items will be displayed here -->
+		</ul>
+		<!--AJAX傳送資料庫資料 -->
+		<button id="postDataBtn">發送 POST 請求</button>
+		<!-- footer -->
+		<div th:insert="~{fragments/footer :: footer_contents}"></div>
+
+	</div>
+	<!-- 
+	在</body>上方
+	ajax腳本/購物車JS腳本-->	
+	<script th:src="@{/js/ajax.js}"></script> 
+	<script th:src="@{/js/cart(JS).js}"></script>
+
+
+	<script>
+		
+	</script>
+</body>
+</html>

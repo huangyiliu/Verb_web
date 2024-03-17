@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div id="cart" th:fragment="smallcart_contents">
+
+		<table>
+			<tr>
+				<td th:text="#{itemlist.item.img.label}">1</td>
+				<td th:text="#{itemlist.item.code.label}">2</td>
+				<td th:text="#{itemlist.category.code.label}">3</td>
+				<td th:text="#{itemlist.item.name.label}">4</td>
+				<td th:text="#{itemlist.item.price.label}">5</td>
+			</tr>
+			<tr th:each="user : ${items}">
+				<td><img th:src="'img/' + ${user.img_code}" width="100"
+					height="100"></td>
+				<td th:text="${user.item_code}">item_code</td>
+				<td th:text="${user.category_code}">category_code</td>
+				<td th:text="${user.item_name}">item_name</td>
+				<td th:text="${user.item_price}">item_price</td>
+		</table>
+
+
+		<div id="cart">
+			<!-- 这里将显示产品数量 -->
+
+			<button onclick="showCart();">購物車總額</button>
+			<button onclick="clearCart();">清空購物車</button>
+			<p>大家的日本語 初級I</p>
+			<button onclick="addToCart(800)">加入購物車</button>
+			<p>大家的日本語 初級II</p>
+			<button onclick="addToCart(2400)">加入購物車</button>
+			<p>【DVD】大家的日本語 初級I</p>
+			<button onclick="addToCart(4800)">加入購物車</button>
+			<p>【DVD】大家的日本語 初級II</p>
+			<button onclick="addToCart(5800)">加入購物車</button>
+		<!-- 	<button  id="productNum" onclick="updateProduct1Num()"></button>-->
+		</div>
+	</div>
+
+
+</body>
+</html>

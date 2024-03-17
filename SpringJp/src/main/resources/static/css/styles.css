@@ -1,0 +1,158 @@
+@charset "UTF-8";
+
+/* styles.css */
+
+/* Reset CSS */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: Arial, sans-serif;
+	background-color: #f0f0f0;
+	background-image: url('/img/img1.jpg');
+	background-size: cover; /* 可选：覆盖整个屏幕 */
+	background-position: center; /* 可选：将背景图像居中 */
+	background-repeat: no-repeat; /* 可选：防止背景图像重复 */
+}
+
+/*ajax輸出隱藏*/
+.rr2 {
+	display: none;
+}
+
+img {
+	max-width: 50%;
+	height: auto;
+}
+
+.container {
+	max-width: 1200px;
+	margin: 0 auto;
+	background-color: rgba(255, 255, 255, 0.3);
+}
+
+.rr1 {
+	font-weight: bold;
+}
+
+/* Navigation */
+.navbar {
+	margin-bottom: 0; /* 防止导航栏与内容重叠 */
+}
+
+/* Header */
+header {
+	background-color: #eee;
+	padding: 20px;
+	text-align: center;
+}
+
+header h1 {
+	font-size: 36px;
+	color: #333;
+}
+
+#title {
+	background-color: rgba(0, 0, 0, 0.1); /* 使用RGBA颜色表示法，透明度为50% */
+}
+
+.note {
+	background-color: #f0f0f0;
+	padding: 10px;
+	border-left: 5px solid #333;
+}
+
+.note .notice {
+	font-size: 2.5em;
+	color: red;
+}
+
+.note .span {
+	margin-left: 20px;
+	color: #333;
+}
+
+#header, #content {
+	background-color: rgba(0, 0, 0, 0.1); /* 使用RGBA颜色表示法，透明度为50% */
+}
+
+/* Main Content */
+#content {
+	width: 30%;
+	float: left
+}
+
+#show_verb {
+	width: 50%;
+	float: left
+}
+
+.row {
+	margin-bottom: 20px;
+}
+
+table {
+	width: 60%;
+}
+
+.table-row {
+	font-weight: bold;
+	display: block;
+	padding-bottom: 5%;
+}
+
+.table-cell {
+	color: red;
+	padding-left: 15px;
+}
+
+/* Form */
+form {
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form input[type="text"] {
+	width: 200px;
+	padding: 10px;
+	margin-right: 10px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+
+form button {
+	padding: 10px 20px;
+	background-color: #333;
+	color: #fff;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+/* footer */
+.footer {
+	text-align: center; /* 文字水平置中 */
+	background-color: lightgrey; /* 背景颜色 */
+	padding: 15px; /* 增加内边距 */
+	margin: 0 auto; /* 元素水平置中 */
+	width: 100%; /* 设置宽度 */
+	float: left;
+}
+
+/* Results */
+#result {
+	margin-top: 20px;
+}
+
+/* Hide */
+.hide {
+	display: none;
+}
+
+
+

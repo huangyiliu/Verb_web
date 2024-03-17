@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="row" th:fragment="content_contents">
+		<form id="content" method="post" action="/home">
+			<input type="text" id="word" name="word" placeholder="請輸入辭書形"
+				th:value="${word_value}"> <input type="submit" value="變化" />
+			<!-- 顯示回傳資料1ajax -->
+			<table>
+				<tr>
+					<td class="rr1">辭書形</td>
+					<td class="rr2" id="dictionaryForm"></td>
+				</tr>
+				<tr>
+					<td class="rr1">ます形</td>
+					<td class="rr2" id="masuForm"></td>
+				</tr>
+				<tr>
+					<td class="rr1">て形</td>
+					<td class="rr2" id="teForm"></td>
+				</tr>
+				<tr>
+					<td class="rr1">た形</td>
+					<td class="rr2" id="taForm"></td>
+				</tr>
+				<tr>
+					<td class="rr1">ない</td>
+					<td class="rr2" id="naiForm"></td>
+				</tr>
+			</table>
+		</form>
+		<!-- show_verb -->
+		<div id="show_verb" th:insert="~{show_verb :: show_verb_contents}"></div>
+		
+		<div id="show_verb1" th:insert="~{smallcart :: smallcart_contents}"></div>
+		
+
+	</div>
+</body>
+</html>
