@@ -2,9 +2,9 @@
  * 購物車
  * 放在</body>上方
  */
- function addToCart(price) {
+ function addToCart(price,product) {
+    product.num++;
     cart.productNum++;
-    cart.product1.num++;
     cart.totalPrice += price;
     showCart();
 }

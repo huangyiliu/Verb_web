@@ -18,11 +18,6 @@ body {
 	background-repeat: no-repeat; /* 可选：防止背景图像重复 */
 }
 
-/*ajax輸出隱藏*/
-.rr2 {
-	display: none;
-}
-
 img {
 	max-width: 50%;
 	height: auto;
@@ -48,6 +43,12 @@ header {
 	background-color: #eee;
 	padding: 20px;
 	text-align: center;
+}
+
+.title {
+	background-color: rgba(0, 0, 0, 0.3);
+	font-size: 36px;
+	color: white;
 }
 
 header h1 {
@@ -79,9 +80,40 @@ header h1 {
 	background-color: rgba(0, 0, 0, 0.1); /* 使用RGBA颜色表示法，透明度为50% */
 }
 
+/* Navbar */
+.navbar-list {
+	display: flex;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	margin-right: 5%;
+}
+
+.d-flex {
+	display: flex;
+}
+
+.justify-content-between {
+	justify-content: space-between;
+}
+
+.list-item {
+	font-size: 20px;
+	padding: 1rem;
+	display: block;
+	text-decoration: none;
+	color: black;
+}
+
+.list-item a:hover, 
+.list-item a:active {
+	color: orange;
+	text-decoration: none;
+	
+}
 /* Main Content */
 #content {
-	width: 30%;
+	width: 100%;
 	float: left
 }
 
@@ -144,15 +176,7 @@ form button {
 	float: left;
 }
 
-/* Results */
-#result {
-	margin-top: 20px;
-}
-
 /* Hide */
 .hide {
 	display: none;
 }
-
-
-

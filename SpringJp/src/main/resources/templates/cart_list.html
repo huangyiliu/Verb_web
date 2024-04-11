@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div id="cart_list" th:fragment="cart_list_contents">
+		<table>
+			<tr>
+				<td th:text="#{itemlist.item.img.label}">1</td>
+				<td th:text="#{itemlist.item.code.label}">2</td>
+				<td th:text="#{itemlist.category.code.label}">3</td>
+				<td th:text="#{itemlist.item.name.label}">4</td>
+				<td th:text="#{itemlist.item.price.label}">5</td>
+			</tr>
+			<tr th:each="user : ${items}">
+				<td><img th:src="'img/' + ${user.img_code}" width="100"
+					height="100"></td>
+				<td th:text="${user.item_code}">item_code</td>
+				<td th:text="${user.category_code}">category_code</td>
+				<td th:text="${user.item_name}">item_name</td>
+				<td th:text="${user.item_price}">item_price</td>
+		</table>
+	</div>
+</body>
+</html>

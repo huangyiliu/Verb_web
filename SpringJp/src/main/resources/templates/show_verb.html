@@ -2,36 +2,48 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<link type="text/css" rel="stylesheet" href="css/styles.css">
-<title>ResponseSample</title>
+<title>Insert title here</title>
 </head>
 <body>
-	<h1>HelloResponse</h1>
-	<!-- ポイント：Model からの値を受け取る -->
-	<!-- 受け取った文字を表示する -->
-	<div id="result" th:fragment="show_verb_contents">
-<!--
-		<div class="rr1">辭書形變化</div>
-		<p th:text="${result?.dictionaryForm}"></p>
+	<div class="row" th:fragment="show_verb_contents">
+		<div class="col-sm-5">
+			<form id="content" method="post" action="/show_verb">
+				<input type="text" id="word" name="word" placeholder="請輸入辭書形"
+					th:value="${word_value}"> <input type="submit" value="變化" />
+				<table>
+					<tr>
+						<td class="rr1">辭書形</td>
+					</tr>
+					<tr>
+						<td class="rr1">ます形</td>
+					</tr>
+					<tr>
+						<td class="rr1">て形</td>
+					</tr>
+					<tr>
+						<td class="rr1">た形</td>
+					</tr>
+					<tr>
+						<td class="rr1">ない</td>
+					</tr>
+				</table>
+			</form>
+			<!-- show_verb -->
+		</div>
+		
+		<!-- ポイント：Model からの値を受け取る -->
+		<!-- 受け取った文字を表示する -->
+		<div class="col-sm-5">
+			<div id="result">
+				<table th:if="${result != null}">
+					<tr th:each="property : ${result.properties}" class="table-row">
+						<td th:text="${property.key}"></td>
+						<td class="table-cell" th:text="${property.value}"></td>
+					</tr>
+				</table>
+			</div>
+		</div>
 
-		<div class="rr1">ます形變化</div>
-		<p th:text="${result?.masuForm}"></p>
-
-		<div class="rr1">て形變化</div>
-		<p th:text="${result?.teForm}"></p>
-
-		<div class="rr1">た形變化</div>
-		<p th:text="${result?.taForm}"></p>
-
-		<div class="rr1">ない變化</div>
-		<p th:text="${result?.naiForm}"></p>
- -->
-		<table th:if="${result != null}">
-			<tr th:each="property : ${result.properties}" class="table-row">
-				<td th:text="${property.key}"></td>
-				<td class="table-cell" th:text="${property.value}"></td>
-			</tr>
-		</table>
 	</div>
 </body>
 </html>

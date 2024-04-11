@@ -21,7 +21,7 @@ import com.example.demo.service.ItemService;
 import com.example.demo.service.JpService;
 
 @Controller
-public class JpController {
+public class JpController extends AbstractController {
 
 	@Autowired
 	private JpService jpService;
@@ -29,109 +29,96 @@ public class JpController {
 	@Autowired
 	private ItemService itemService;
 
-	@Autowired
 	public JpController(JpService jpService, ItemService itemService) {
-	    this.jpService = jpService;
-	    this.itemService = itemService;
+		this.jpService = jpService;
+		this.itemService = itemService;
 	}
-	@GetMapping("/home")
-    public String home(Model model) {
-        List<Item> itemList = itemService.getAllItems();
-        model.addAttribute("items", itemList);
-        return "home";
-    }
 
-//	@GetMapping("/home/data")
-//    public ResponseEntity<Map<String, Object>> homeData() {
-//        List<Item> itemList = itemService.getAllItems();
-//        
-//        Map<String, String> properties = new LinkedHashMap<>();
-//        properties.put("key1", "value1");
-//        properties.put("key2", "value2");
-//
-//        Map<String, Object> responseData = new LinkedHashMap<>();
-//        responseData.put("items", itemList);
-//        responseData.put("properties", properties);
-//
-//        return ResponseEntity.ok().body(responseData);
-//    }
-	
+	//後端資料傳送至前端 itemList
+	@GetMapping("/home")
+	public String home(Model model, String template, String fragment) {
+		List<Item> itemList = itemService.getAllItems();
+		model.addAttribute("items", itemList);
+//		return "home";
+		return forwardBusinessLayout(model, "fragments/home", "home_contents");
+	}
+
 	@PostMapping("/home/data")
 	@ResponseBody
 	public ResponseEntity<List<Map<String, Object>>> homeData() {
-	    List<Map<String, Object>> itemList = new ArrayList<>();
-	    
-	    // 获取数据库中的所有项目数据
-	    List<Item> items = itemService.getAllItems();
-	    for (Item item : items) {
-	        Map<String, Object> itemMap = new LinkedHashMap<>();
-	        itemMap.put("ITEM_CODE", item.getItem_code());
-	        itemMap.put("CATEGORY_CODE", item.getCategory_code());
-	        itemMap.put("ITEM_NAME", item.getItem_name());
-	        itemMap.put("ITEM_PRICE", item.getItem_price());
-	        itemList.add(itemMap);
-	    }
-	    
-	    return ResponseEntity.ok()
-                .contentType(MediaType.APPLICATION_JSON)
-                .body(itemList);
+		List<Map<String, Object>> itemList = new ArrayList<>();
+
+		// 获取数据库中的所有项目数据
+		List<Item> items = itemService.getAllItems();
+		for (Item item : items) {
+			Map<String, Object> itemMap = new LinkedHashMap<>();
+			itemMap.put("ITEM_CODE", item.getItem_code());
+			itemMap.put("CATEGORY_CODE", item.getCategory_code());
+			itemMap.put("ITEM_NAME", item.getItem_name());
+			itemMap.put("ITEM_PRICE", item.getItem_price());
+			itemList.add(itemMap);
+		}
+
+//將資料庫資料輸出在控制台
+//	    for (Map<String, Object> item : itemList) {
+//	        System.out.println(item);
+//	    }
+
+		return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(itemList);
 	}
 
-	@PostMapping("/home")
+	/**
+	 * 動詞變化處理
+	 * @param word,str,model
+	 * @return home
+	 */
+	@PostMapping("/show_verb")
 	public String postTomasu(@RequestParam("word") String str, Model model) {
-		List<Item> itemList = itemService.getAllItems();
-		model.addAttribute("items", itemList);
+
+		// 動詞變化回傳
 		String v = jpService.Tomasu(str);
 		String v1 = jpService.Tote(str);
 		String v2 = jpService.Tota(str);
 		String v3 = jpService.Tonai(str);
-		Jp_entity result = new Jp_entity();
 		Map<String, String> properties = new LinkedHashMap<>();
 		properties.put("辭書變化", str);
 		properties.put("ます變化", v);
 		properties.put("て形變化", v1);
 		properties.put("た形變化", v2);
 		properties.put("ない變化", v3);
+
+		// 動詞變化
+		Jp_entity result = new Jp_entity();
 		result.setProperties(properties);
-		result.setDictionaryForm(str);
-		result.setMasuForm(v);
-		result.setTeForm(v1);
-		result.setTaForm(v2);
-		result.setNaiForm(v3);
 		model.addAttribute("result", result);
 		// 傳送到動詞顯示頁面
-		return "home";
+		return forwardBusinessLayout(model, "show_verb", "show_verb_contents");
+		
 	}
 
-
-//	@GetMapping("/print-item-data")
-//	public String printItemData() {
-//	    // 從資料庫中獲取 Item 物件列表
-//	    List<Item> itemList = itemService.getAllUsers();
-//
-//	    // 输出 itemList 的大小
-//	    System.out.println("Number of items retrieved from the database: " + itemList.size());
-//
-//	    // 檢查列表是否為空
-//	    if (!itemList.isEmpty()) {
-//	        // 選擇列表中的第一個 Item 物件
-//	        Item item = itemList.get(0);
-//
-//	        // 打印 Item 對象的信息
-//	        System.out.println("Item Code: " + item.getItem_code());
-//	        System.out.println("Category Code: " + item.getCategory_code());
-//	        System.out.println("Item Name: " + item.getItem_name());
-//	        System.out.println("Item Price: " + item.getItem_price());
-//
-//	        // 調用 ItemService 的 printItemData 方法
-//	        itemService.printItemData(item);
-//
-//	    } else {
-//	        System.out.println("No items retrieved from the database.");
-//	    }
-//
-//	    // 返回視圖或重定向到其他頁面
-//	    return "home";
-//	}
-
+	
+	
+	@GetMapping("/cart")
+	public String cart(Model model, String template, String fragment) {
+		return forwardBusinessLayout(model, "cart", "cart_contents");
+	}
+	
+	@GetMapping("/show_verb")
+	public String show_verb(Model model, String template, String fragment) {
+		return forwardBusinessLayout(model, "show_verb", "show_verb_contents");
+	}
+	
+	@GetMapping("/cart_list")
+	public String cart_list(Model model, String template, String fragment) {
+		List<Item> itemList = itemService.getAllItems();
+		model.addAttribute("items", itemList);
+		return forwardBusinessLayout(model, "cart_list", "cart_list_contents");
+	}
+	
+	@GetMapping("/ajax_db")
+	public String ajax(Model model, String template, String fragment) {
+		List<Item> itemList = itemService.getAllItems();
+		model.addAttribute("items", itemList);
+		return forwardBusinessLayout(model, "ajax_db", "ajax_contents");
+	}
 }

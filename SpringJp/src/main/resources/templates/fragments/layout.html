@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<title>動詞變化行</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link th:href="@{/css/styles.css}" rel="stylesheet" />
+<!-- Bootstrap -->
+<link rel="stylesheet"
+	th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" />
+<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+</head>
+<body>
+	<div class="container">
+		<!-- header -->
+		<div th:insert="~{fragments/header :: header_verb_contents}"></div>
+
+	<!-- home--切換其他內容 動詞變化>>購物表單顯示>>購物車顯示>>AJAX後臺資料顯示 	
+		<div th:insert="~{show_verb :: show_verb_contents}"></div>
+-->
+		
+		<div th:replace="__${contents}__"></div>
+		
+
+		<!-- footer -->
+		<div th:insert="~{fragments/footer :: footer_contents}"></div>
+
+	</div>
+	<!-- 
+	在</body>上方
+	ajax腳本/購物車JS腳本-->
+	<script th:src="@{/js/ajax.js}"></script>
+	<script th:src="@{/js/cart(JS).js}"></script>
+
+</body>
+</html>

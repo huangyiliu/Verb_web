@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+		<div id="cart" th:fragment="cart_contents">
+			<!-- 这里将显示产品数量 -->
+			<button onclick="showCart();">購物車總額</button>
+			<button onclick="clearCart();">清空購物車</button>
+			<p>大家的日本語 初級I</p>
+			<button onclick="addToCart(cart.product1.price,cart.product1);">加入購物車</button>
+			<p>大家的日本語 初級II</p>
+			<button onclick="addToCart(cart.product2.price,cart.product2);">加入購物車</button>
+			<p>【DVD】大家的日本語 初級I</p>
+			<button onclick="addToCart(cart.product3.price,cart.product3);">加入購物車</button>
+			<p>【DVD】大家的日本語 初級II</p>
+			<button onclick="addToCart(cart.product4.price,cart.product4);">加入購物車</button>
+		<!-- 	<button  id="productNum" onclick="updateProduct1Num()"></button>-->
+		</div>
+</body>
+</html>
